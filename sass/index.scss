@@ -1,0 +1,35 @@
+:root {
+  --color-red: #fc4747;
+  --color-white: #ffffff;
+  --color-off-black: #10141e;
+  --color-blue-1: #5a698f;
+  --color-blue-2: #161d2f;
+
+  --fs-1: 0.8125rem;
+  --fs-2: 0.9375rem;
+  --fs-3: 1.125rem;
+  --fs-4: 1.5rem;
+  --fs-5: 2rem;
+
+  --fw-1: 300;
+  --fw-2: 500;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+input,
+button {
+  font: inherit;
+}
+
+body {
+  background-color: var(--color-off-black);
+  min-height: 100vh;
+  font-weight: var(--fw-1);
+}
