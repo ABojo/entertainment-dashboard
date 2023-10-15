@@ -1,0 +1,26 @@
+.search {
+  grid-area: search;
+  margin-top: 2rem;
+  display: flex;
+
+  &__icon {
+    margin-right: 1rem;
+  }
+
+  &__input {
+    padding-bottom: 1rem;
+    font-size: var(--fs-4);
+    color: var(--color-white);
+    background-color: transparent;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s;
+    caret-color: var(--color-red);
+
+    &:focus {
+      outline: none;
+      border-bottom: 1px solid var(--color-blue-1);
+    }
+  }
+}
