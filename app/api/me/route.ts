@@ -1,19 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import db from "../../../utils/db";
-import { getUserFromCookies } from "../../../utils/auth";
+import { getCurrentUser } from "../../../utils/auth";
 
 export async function GET(req: NextRequest) {
-  const jwtData = getUserFromCookies(req);
-
-  const user = await db.user.findFirst({
-    where: {
-      id: jwtData.id!,
-    },
-    select: {
-      id: true,
-      username: true,
-    },
-  });
-
+  const user = await getCurrentUser(req);
   return NextResponse.json({ status: "success", data: user });
 }
