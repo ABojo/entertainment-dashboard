@@ -7,8 +7,39 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
+enum UserType {
+    ADMIN
+    STANDARD
+}
+
 model User {
-    id       String @id @default(uuid())
-    username String
+    id       String   @id @default(uuid())
+    username String   @unique
     password String
+    type     UserType @default(STANDARD)
+}
+
+enum ThumbnailType {
+    TRENDING
+    REGULAR
+}
+
+model Thumbnail {
+    id      String        @id @default(uuid())
+    small   String?
+    medium  String?
+    large   String?
+    mediaId String
+    type    ThumbnailType
+    Media   Media         @relation(fields: [mediaId], references: [id], onDelete: Cascade)
+}
+
+model Media {
+    id         String      @id @default(uuid())
+    title      String
+    year       Int
+    category   String
+    rating     String
+    isTrending Boolean
+    thumbnails Thumbnail[]
 }
