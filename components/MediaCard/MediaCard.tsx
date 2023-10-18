@@ -18,12 +18,7 @@ export default function MediaCard({ media }: MediaCardProps) {
             Play
           </div>
         </div>
-        <Image
-          className={styles.card__img}
-          alt={`${media.title} cover`}
-          src={media.thumbnails[0].large!}
-          layout="fill"
-        />
+        <Image className={styles.card__img} alt={`${media.title} cover`} src={media.thumbnails[0].large!} fill />
       </Link>
       <div className={styles.card__foot}>
         <ul className={styles.card__details}>
