@@ -3,6 +3,11 @@ import db from "../../../utils/db";
 import { Thumbnail } from "@prisma/client";
 import { addAdminGuard } from "../../../utils/guards";
 
+interface QueryCondition {
+  title?: { contains: string; mode: "insensitive" };
+  category?: string;
+}
+
 export const POST = addAdminGuard(async function (req: NextRequest) {
   const { title, year, category, rating, isTrending, thumbnail } = await req.json();
 
@@ -52,7 +57,20 @@ export const POST = addAdminGuard(async function (req: NextRequest) {
 });
 
 export const GET = async function (req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+
+  const category = searchParams.get("category");
+  const title = searchParams.get("title");
+
+  const conditions: QueryCondition = {};
+
+  if (title) conditions.title = { contains: title, mode: "insensitive" };
+
+  if (category === "movie") conditions.category = "Movie";
+  if (category === "tv") conditions.category = "TV Series";
+
   const mediaData = await db.media.findMany({
+    where: conditions,
     include: { thumbnails: true },
   });
 
