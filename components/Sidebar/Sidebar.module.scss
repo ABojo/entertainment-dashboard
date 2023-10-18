@@ -1,5 +1,6 @@
 .sidebar {
   grid-area: sidebar;
+  height: calc(100vh - 4rem);
   background-color: var(--color-blue-2);
   border-radius: 1rem;
   padding: 2rem 1.75rem;
