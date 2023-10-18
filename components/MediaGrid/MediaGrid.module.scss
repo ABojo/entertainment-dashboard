@@ -1,0 +1,13 @@
+.container {
+  &__title {
+    font-weight: var(--fw-1);
+    font-size: var(--fs-5);
+    margin-bottom: 2rem;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    grid-gap: 2.25rem;
+  }
+}
