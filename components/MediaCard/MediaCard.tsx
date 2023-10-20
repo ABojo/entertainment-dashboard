@@ -18,7 +18,16 @@ export default function MediaCard({ media }: MediaCardProps) {
             Play
           </div>
         </div>
-        <Image className={styles.card__img} alt={`${media.title} cover`} src={media.thumbnails[0].large!} fill />
+        <div className={styles.card__loader}></div>
+        <Image
+          className={styles.card__img}
+          alt={`${media.title} cover`}
+          src={media.thumbnails[0].large!}
+          fill
+          onLoadingComplete={(image) => {
+            image.classList.add(styles["card__img--loaded"]);
+          }}
+        />
       </Link>
       <div className={styles.card__foot}>
         <ul className={styles.card__details}>
