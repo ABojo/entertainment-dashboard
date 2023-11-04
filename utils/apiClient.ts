@@ -26,6 +26,18 @@ const apiClient = {
 
     return json.data;
   },
+  addBookmark: async function (mediaId: string) {
+    const response = await fetch(`/api/bookmark`, { method: "POST", body: JSON.stringify({ mediaId }) });
+    const json = await response.json();
+
+    return json.data;
+  },
+  deleteBookmark: async function (bookmarkId: string) {
+    const response = await fetch(`/api/bookmark`, { method: "DELETE", body: JSON.stringify({ bookmarkId }) });
+    const json = await response.json();
+
+    return json.data;
+  },
 };
 
 export default apiClient;
