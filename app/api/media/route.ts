@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import db from "../../../utils/db";
 import { Thumbnail } from "@prisma/client";
 import { addAdminGuard } from "../../../utils/guards";
+import { getCurrentUser } from "../../../utils/auth";
 
 interface QueryCondition {
   title?: { contains: string; mode: "insensitive" };
@@ -57,22 +58,41 @@ export const POST = addAdminGuard(async function (req: NextRequest) {
 });
 
 export const GET = async function (req: NextRequest) {
+  //get the currently logged in user
+  const currentUser = await getCurrentUser(req);
+
   const { searchParams } = new URL(req.url);
 
+  //pull query parameters
   const category = searchParams.get("category");
   const title = searchParams.get("title");
 
   const conditions: QueryCondition = {};
 
+  //assemble the condition that will be used to fetch media
   if (title) conditions.title = { contains: title, mode: "insensitive" };
 
   if (category === "movie") conditions.category = "Movie";
   if (category === "tv") conditions.category = "TV Series";
 
+  //pull in the media that satisfies the conditions
+  //get thumbnails associated with the media and bookmark associated with the media and currently logged in user
   const mediaData = await db.media.findMany({
     where: conditions,
-    include: { thumbnails: true },
+    include: {
+      thumbnails: true,
+      bookmarks: {
+        where: {
+          userId: currentUser?.id,
+        },
+      },
+    },
   });
 
-  return NextResponse.json({ status: "success", data: mediaData });
+  //format the bookmark data before sending to client
+  const mediaForUser = mediaData.map((media) => {
+    return { ...media, bookmarks: undefined, bookmarkId: media.bookmarks[0]?.id || null };
+  });
+
+  return NextResponse.json({ status: "success", data: mediaForUser });
 };
