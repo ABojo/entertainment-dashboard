@@ -19,6 +19,8 @@
 }
 
 .card {
+  position: relative;
+
   &__link {
     display: block;
     height: 11rem;
@@ -54,6 +56,28 @@
     border-radius: 1rem;
     transition: all 0.2s;
     opacity: 0;
+  }
+
+  &__bookmark {
+    z-index: 2;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border: none;
+    border-radius: 100%;
+    height: 2rem;
+    width: 2rem;
+    background-color: rgba(0, 0, 0, 0.75);
+    cursor: pointer;
+    color: var(--color-white);
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 1);
+    }
   }
 
   &__play {

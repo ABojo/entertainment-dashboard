@@ -1,10 +1,10 @@
 import styles from "./MediaGrid.module.scss";
 import MediaCard from "../MediaCard/MediaCard";
-import MediaWithThumbnail from "../../types/MediaWithThumbnail";
+import MediaResponse from "../../types/MediaResponse";
 
 interface MediaGridProps {
   title: string;
-  mediaData: MediaWithThumbnail[];
+  mediaData: MediaResponse[];
 }
 
 export default function MediaGrid({ mediaData, title }: MediaGridProps) {
