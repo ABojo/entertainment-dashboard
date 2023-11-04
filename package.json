@@ -17,6 +17,7 @@
     "prisma": "^5.3.1",
     "react": "latest",
     "react-dom": "latest",
+    "react-spinners": "^0.13.8",
     "sass": "^1.68.0"
   },
   "devDependencies": {
