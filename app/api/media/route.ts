@@ -58,7 +58,6 @@ export const POST = addAdminGuard(async function (req: NextRequest) {
 });
 
 export const GET = async function (req: NextRequest) {
-  //get the currently logged in user
   const currentUser = await getCurrentUser(req);
 
   const { searchParams } = new URL(req.url);
@@ -89,10 +88,16 @@ export const GET = async function (req: NextRequest) {
     },
   });
 
-  //format the bookmark data before sending to client
-  const mediaForUser = mediaData.map((media) => {
-    return { ...media, bookmarks: undefined, bookmarkId: media.bookmarks[0]?.id || null };
-  });
+  //format the media data to include the bookmark id
+  //if bookmarkedOnly is true exlude the media that isnt bookmarked by the user
+  const mediaForUser = [];
+  const bookmarkedOnly = searchParams.get("bookmarked");
+
+  for (const media of mediaData) {
+    if (bookmarkedOnly === "true" && media.bookmarks.length === 0) continue;
+
+    mediaForUser.push({ ...media, bookmarks: undefined, bookmarkId: media.bookmarks[0]?.id || null });
+  }
 
   return NextResponse.json({ status: "success", data: mediaForUser });
 };
