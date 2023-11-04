@@ -1,6 +1,7 @@
 interface MediaQuery {
   category?: "tv" | "movie";
   title?: string;
+  bookmarked?: "true";
 }
 
 const apiClient = {
