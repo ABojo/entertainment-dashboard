@@ -1,0 +1,142 @@
+@keyframes load {
+  0% {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  100% {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.card {
+  position: relative;
+
+  &__link {
+    display: block;
+    height: 14rem;
+    width: 29.5rem;
+    border-radius: 1rem;
+    position: relative;
+    transition: all 0.2s;
+  }
+
+  &__img {
+    border-radius: 1rem;
+    object-fit: cover;
+    transition: all 0.2s;
+    opacity: 1;
+    animation: load 0.5s linear infinite alternate;
+
+    &--loaded {
+      animation: fadeIn 0.1s;
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    border-radius: 1rem;
+    transition: all 0.2s;
+    opacity: 0;
+  }
+
+  &__bookmark {
+    z-index: 2;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border: none;
+    border-radius: 100%;
+    height: 2rem;
+    width: 2rem;
+    background-color: rgba(0, 0, 0, 0.75);
+    cursor: pointer;
+    color: var(--color-white);
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 1);
+    }
+  }
+
+  &__play {
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 2rem;
+    color: var(--color-white);
+    padding: 1rem 1.5rem;
+    font-weight: var(--fw-2);
+    font-size: var(--fs-3);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__svg {
+    margin-right: 0.25rem;
+  }
+
+  &__link:hover &__overlay {
+    opacity: 1;
+  }
+
+  &__info {
+    position: absolute;
+    left: 1.5rem;
+    bottom: 1rem;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 0.25rem;
+  }
+
+  &__details {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: var(--fs-2);
+    margin-bottom: 0.25rem;
+    color: var(--color-white);
+    opacity: 0.75;
+
+    li {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__title {
+    font-size: var(--fs-4);
+    font-weight: var(--fw-2);
+    text-decoration: none;
+    color: var(--color-white);
+  }
+
+  &__dot {
+    height: 0.25rem;
+    width: 0.25rem;
+    border-radius: 100%;
+    background-color: var(--color-white);
+  }
+}

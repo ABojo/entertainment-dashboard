@@ -1,0 +1,31 @@
+.container {
+  position: relative;
+
+  &__title {
+    font-weight: var(--fw-1);
+    font-size: var(--fs-5);
+    margin-bottom: 2rem;
+  }
+
+  &__grid {
+    display: flex;
+    gap: 2.25rem;
+    overflow-x: scroll;
+
+    &::-webkit-scrollbar {
+      height: 7.5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--color-blue-1);
+      border-radius: 1rem;
+      transition: all 0.2s;
+      scrollbar-width: 10px;
+      width: 10%;
+    }
+  }
+}
