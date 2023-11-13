@@ -28,7 +28,12 @@ export async function verifyJWT(token: string) {
 }
 
 export async function getCurrentUser(req: NextRequest) {
-  const cookie = req.cookies.get("JWT")!;
+  const cookie = req.cookies.get("JWT");
+
+  if (!cookie) {
+    return null;
+  }
+
   const jwtData = decodeJwt(cookie.value);
 
   const user = await db.user.findFirst({
