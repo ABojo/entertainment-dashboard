@@ -12,7 +12,7 @@ interface TrendingCardProps {
 export default function TrendingCard({ media }: TrendingCardProps) {
   return (
     <div className={styles.card}>
-      <BookmarkButton bookmarkId={media.bookmarkId} mediaId={media.id} />
+      <BookmarkButton className={styles.card__bookmark} bookmarkId={media.bookmarkId} mediaId={media.id} />
       <Link href={`/media/${media.id}`} className={styles.card__link}>
         <div className={styles.card__overlay}>
           <div className={styles.card__play}>

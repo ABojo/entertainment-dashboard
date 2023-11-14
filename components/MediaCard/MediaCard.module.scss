@@ -78,4 +78,11 @@
     border-radius: 100%;
     background-color: var(--color-white);
   }
+
+  &__bookmark {
+    z-index: 2;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
 }

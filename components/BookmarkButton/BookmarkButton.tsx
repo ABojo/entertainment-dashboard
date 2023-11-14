@@ -5,11 +5,12 @@ import Loader from "../Loader/Loader";
 import SVGIcon from "../SVGIcon/SVGIcon";
 
 interface BookmarkButtonProps {
+  className?: string;
   bookmarkId?: string;
   mediaId: string;
 }
 
-export default function BookmarkButton({ bookmarkId, mediaId }: BookmarkButtonProps) {
+export default function BookmarkButton({ className, bookmarkId, mediaId }: BookmarkButtonProps) {
   const [bookmark, setBookmark] = useState<string | null>(bookmarkId || null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -28,7 +29,7 @@ export default function BookmarkButton({ bookmarkId, mediaId }: BookmarkButtonPr
   }
 
   return (
-    <button className={styles.bookmark} onClick={bookmarkHandler} disabled={isLoading}>
+    <button className={`${className} ${styles.bookmark}`} onClick={bookmarkHandler} disabled={isLoading}>
       {isLoading ? (
         <Loader size="1rem" />
       ) : bookmark ? (
