@@ -1,0 +1,30 @@
+@keyframes load {
+  0% {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  100% {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.image {
+  border-radius: 1rem;
+  transition: all 0.2s;
+  opacity: 1;
+  animation: load 0.5s linear infinite alternate;
+
+  &--loaded {
+    animation: fadeIn 0.1s;
+  }
+}

@@ -4,6 +4,7 @@ import Image from "next/image";
 import SVGIcon from "../SVGIcon/SVGIcon";
 import Link from "next/link";
 import BookmarkButton from "../BookmarkButton/BookmarkButton";
+import LazyImage from "../LazyImage/LazyImage";
 
 interface MediaCardProps {
   media: MediaResponse;
@@ -21,15 +22,7 @@ export default function MediaCard({ media }: MediaCardProps) {
           </div>
         </div>
         <div className={styles.card__loader}></div>
-        <Image
-          className={styles.card__img}
-          alt={`${media.title} cover`}
-          src={media.thumbnails[0].large!}
-          fill
-          onLoadingComplete={(image) => {
-            image.classList.add(styles["card__img--loaded"]);
-          }}
-        />
+        <LazyImage src={media.thumbnails[0].large!} alt={`${media.title} cover`} />
       </Link>
       <div className={styles.card__foot}>
         <ul className={styles.card__details}>

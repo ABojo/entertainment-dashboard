@@ -1,6 +1,6 @@
 import styles from "./TrendingCard.module.scss";
 import MediaResponse from "../../types/MediaResponse";
-import Image from "next/image";
+import LazyImage from "../LazyImage/LazyImage";
 import SVGIcon from "../SVGIcon/SVGIcon";
 import Link from "next/link";
 import BookmarkButton from "../BookmarkButton/BookmarkButton";
@@ -21,15 +21,7 @@ export default function TrendingCard({ media }: TrendingCardProps) {
           </div>
         </div>
         <div className={styles.card__loader}></div>
-        <Image
-          className={styles.card__img}
-          alt={`${media.title} cover`}
-          src={media.thumbnails[1].large!}
-          fill
-          onLoadingComplete={(image) => {
-            image.classList.add(styles["card__img--loaded"]);
-          }}
-        />
+        <LazyImage alt={`${media.title} cover`} src={media.thumbnails[1].large!} />
         <div className={styles.card__info}>
           <ul className={styles.card__details}>
             <li>{media.year}</li>
