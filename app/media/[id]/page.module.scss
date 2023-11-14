@@ -1,0 +1,91 @@
+.container {
+  max-width: 50rem;
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 5rem;
+  color: var(--color-white);
+  position: relative;
+  min-height: 100vh;
+
+  &__img {
+    max-width: 25rem;
+    width: 100%;
+    height: 15rem;
+    margin-bottom: 2rem;
+    position: relative;
+
+    img {
+      width: 100%;
+      border-radius: 1rem;
+    }
+  }
+
+  &__head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    font-weight: var(--fw-2);
+  }
+
+  &__details {
+    margin-bottom: 1rem;
+    opacity: 0.8;
+  }
+
+  &__paragraph {
+    line-height: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  &__play {
+    background-color: var(--color-red);
+    color: var(--color-white);
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    font-weight: var(--fw-2);
+    font-size: var(--fs-4);
+    border: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+
+    &:hover {
+      opacity: 0.75;
+    }
+  }
+}
+
+.details {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: var(--fs-1);
+  margin-bottom: 0.25rem;
+  color: var(--color-white);
+  opacity: 0.75;
+
+  li {
+    display: flex;
+    align-items: center;
+  }
+
+  &__dot {
+    height: 0.25rem;
+    width: 0.25rem;
+    border-radius: 100%;
+    background-color: var(--color-white);
+  }
+
+  &__svg {
+    margin-right: 0.25rem;
+  }
+}
