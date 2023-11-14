@@ -59,7 +59,7 @@ export default function Bookmarks() {
         }}
         placeholder={"Search your bookmarks"}
       />
-      {firstLoad && <Loader />}
+      {firstLoad && <Loader absoluteCenter />}
       {!firstLoad && (
         <>
           <MediaGrid title={movieGrid.title} mediaData={movieGrid.mediaList} />

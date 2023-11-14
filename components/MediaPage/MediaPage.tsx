@@ -59,7 +59,7 @@ export default function MediaPage({ pageTitle, searchPlaceholder, fetchMedia }: 
         }}
         placeholder={searchPlaceholder}
       />
-      {firstLoad && <Loader />}
+      {firstLoad && <Loader absoluteCenter />}
       <MediaGrid title={gridTitle} mediaData={mediaList} />
     </>
   );

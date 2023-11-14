@@ -63,7 +63,7 @@ export default function Home() {
         }}
         placeholder={"Search for movies or TV shows"}
       />
-      {firstLoad && <Loader />}
+      {firstLoad && <Loader absoluteCenter />}
       {!firstLoad && (
         <>
           <div style={{ marginBottom: "2.5rem" }}>
