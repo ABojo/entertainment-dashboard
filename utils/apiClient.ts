@@ -27,6 +27,12 @@ const apiClient = {
 
     return json.data;
   },
+  getMediaById: async function (mediaId: string) {
+    const response = await fetch(`/api/media/${mediaId}`);
+    const json = await response.json();
+
+    return json.data;
+  },
   addBookmark: async function (mediaId: string) {
     const response = await fetch(`/api/bookmark`, { method: "POST", body: JSON.stringify({ mediaId }) });
     const json = await response.json();
