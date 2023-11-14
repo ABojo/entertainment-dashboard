@@ -8,6 +8,7 @@ import Loader from "../../../components/Loader/Loader";
 import SVGIcon from "../../../components/SVGIcon/SVGIcon";
 import LazyImage from "../../../components/LazyImage/LazyImage";
 import BookmarkButton from "../../../components/BookmarkButton/BookmarkButton";
+import { useRouter } from "next/navigation";
 
 interface MediaProps {
   params: { id: string };
@@ -15,6 +16,7 @@ interface MediaProps {
 
 export default function MediaListing({ params }: MediaProps) {
   const [mediaData, setMediaData] = useState<MediaResponse | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     (async function () {
@@ -23,8 +25,15 @@ export default function MediaListing({ params }: MediaProps) {
     })();
   }, []);
 
+  function goBack() {
+    router.back();
+  }
+
   return (
     <main className={styles.container}>
+      <button className={styles.container__back} onClick={goBack}>
+        &#8592; Back
+      </button>
       {mediaData ? (
         <div>
           <div className={styles.container__img}>
