@@ -1,45 +1,18 @@
-import { useState } from "react";
 import styles from "./MediaCard.module.scss";
 import MediaResponse from "../../types/MediaResponse";
 import Image from "next/image";
 import SVGIcon from "../SVGIcon/SVGIcon";
 import Link from "next/link";
-import Loader from "../Loader/Loader";
-import apiClient from "../../utils/apiClient";
+import BookmarkButton from "../BookmarkButton/BookmarkButton";
 
 interface MediaCardProps {
   media: MediaResponse;
 }
 
 export default function MediaCard({ media }: MediaCardProps) {
-  const [bookmarkId, setBookmarkId] = useState(media.bookmarkId || null);
-  const [isLoading, setIsLoading] = useState(false);
-
-  async function bookmarkHandler() {
-    setIsLoading(true);
-
-    if (bookmarkId) {
-      await apiClient.deleteBookmark(bookmarkId);
-      setBookmarkId(null);
-    } else {
-      const response = await apiClient.addBookmark(media.id);
-      setBookmarkId(response.id);
-    }
-
-    setIsLoading(false);
-  }
-
   return (
     <div className={styles.card}>
-      <button className={styles.card__bookmark} onClick={bookmarkHandler} disabled={isLoading}>
-        {isLoading ? (
-          <Loader size="1rem" />
-        ) : bookmarkId ? (
-          <SVGIcon type="bookmark-full" />
-        ) : (
-          <SVGIcon type="bookmark-empty" />
-        )}
-      </button>
+      <BookmarkButton bookmarkId={media.bookmarkId} mediaId={media.id} />
       <Link href={`/media/${media.id}`} className={styles.card__link}>
         <div className={styles.card__overlay}>
           <div className={styles.card__play}>
