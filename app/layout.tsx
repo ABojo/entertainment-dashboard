@@ -10,6 +10,7 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   title: "Entertainment App",
   description: "An entertainment app.",
+  icons: ["/images/logo.svg"],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
