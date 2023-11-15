@@ -17,6 +17,18 @@ const apiClient = {
 
     return json;
   },
+  logout: async function () {
+    const response = await fetch("/api/logout");
+    const json = await response.json();
+
+    return json.data;
+  },
+  getMyAccount: async function () {
+    const response = await fetch("/api/me");
+    const json = await response.json();
+
+    return json.data;
+  },
   getMedia: async function (query?: MediaQuery) {
     let apiRoute = "/api/media";
 
