@@ -6,6 +6,7 @@ import apiClient from "../../utils/apiClient";
 import { User } from "@prisma/client";
 import Loader from "../../components/Loader/Loader";
 import LazyImage from "../../components/LazyImage/LazyImage";
+import BackButton from "../../components/BackButton/BackButton";
 import { useRouter } from "next/navigation";
 
 export default function Account() {
@@ -23,6 +24,7 @@ export default function Account() {
     <main className={styles.container}>
       {profileData ? (
         <>
+          <BackButton />
           <div className={styles.container__head}>
             <div className={styles.container__img}>
               <LazyImage src="/images/image-avatar.png" alt="" />

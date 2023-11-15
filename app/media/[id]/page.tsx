@@ -8,7 +8,7 @@ import Loader from "../../../components/Loader/Loader";
 import SVGIcon from "../../../components/SVGIcon/SVGIcon";
 import LazyImage from "../../../components/LazyImage/LazyImage";
 import BookmarkButton from "../../../components/BookmarkButton/BookmarkButton";
-import { useRouter } from "next/navigation";
+import BackButton from "../../../components/BackButton/BackButton";
 
 interface MediaProps {
   params: { id: string };
@@ -18,7 +18,6 @@ export default function MediaListing({ params }: MediaProps) {
   const [popupClass, setPopupClass] = useState(styles.container__popup);
   const [popupIsOpen, setPopupIsOpen] = useState(false);
   const [mediaData, setMediaData] = useState<MediaResponse | null>(null);
-  const router = useRouter();
 
   useEffect(() => {
     (async function () {
@@ -26,10 +25,6 @@ export default function MediaListing({ params }: MediaProps) {
       setMediaData(mediaData);
     })();
   }, []);
-
-  function goBack() {
-    router.back();
-  }
 
   return (
     <main className={styles.container}>
@@ -49,9 +44,7 @@ export default function MediaListing({ params }: MediaProps) {
           </button>
         </div>
       )}
-      <button className={styles.container__back} onClick={goBack}>
-        &#8592; Back
-      </button>
+      <BackButton />
       {mediaData ? (
         <div>
           <div className={styles.container__img}>
