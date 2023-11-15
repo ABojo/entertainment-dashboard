@@ -4,6 +4,7 @@ import styles from "./Sidebar.module.scss";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import LazyImage from "../LazyImage/LazyImage";
 
 const navLinks = [
   {
@@ -73,7 +74,9 @@ export default function Sidebar() {
           })}
         </ul>
       </nav>
-      <Image className={styles.sidebar__profile} src="/images/image-avatar.png" alt="" width="40" height="40" />
+      <div className={styles.sidebar__profile}>
+        <LazyImage src="/images/image-avatar.png" alt="" />
+      </div>
     </div>
   );
 }

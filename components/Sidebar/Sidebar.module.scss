@@ -18,6 +18,9 @@
   &__profile {
     border-radius: 100%;
     border: 1px solid var(--color-white);
+    position: relative;
+    height: 2.5rem;
+    width: 2.5rem;
   }
 }
 
