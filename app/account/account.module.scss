@@ -1,0 +1,42 @@
+.container {
+  color: var(--color-white);
+  max-width: 50rem;
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 5rem;
+  min-height: 100vh;
+
+  h1 {
+    font-size: var(--fs-4);
+  }
+
+  &__head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__img {
+    position: relative;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 100%;
+    border: 1px solid var(--color-white);
+  }
+
+  &__logout {
+    margin-top: 2rem;
+    color: var(--color-white);
+    padding: 0.5rem 1rem;
+    background-color: var(--color-red);
+    border: none;
+    font-weight: var(--fw-2);
+    border-radius: 0.25rem;
+    transition: all 0.2s;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.75;
+    }
+  }
+}

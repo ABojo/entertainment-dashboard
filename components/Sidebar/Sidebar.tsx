@@ -74,9 +74,9 @@ export default function Sidebar() {
           })}
         </ul>
       </nav>
-      <div className={styles.sidebar__profile}>
+      <Link href="/account" className={styles.sidebar__profile}>
         <LazyImage src="/images/image-avatar.png" alt="" />
-      </div>
+      </Link>
     </div>
   );
 }

@@ -21,6 +21,11 @@
     position: relative;
     height: 2.5rem;
     width: 2.5rem;
+    transition: all 0.2s;
+
+    &:hover {
+      opacity: 0.5;
+    }
   }
 }
 
