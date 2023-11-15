@@ -15,6 +15,7 @@ interface MediaProps {
 }
 
 export default function MediaListing({ params }: MediaProps) {
+  const [popupIsOpen, setPopupIsOpen] = useState(false);
   const [mediaData, setMediaData] = useState<MediaResponse | null>(null);
   const router = useRouter();
 
@@ -31,6 +32,19 @@ export default function MediaListing({ params }: MediaProps) {
 
   return (
     <main className={styles.container}>
+      {popupIsOpen && (
+        <div className={styles.container__popup}>
+          <h2>Error</h2>
+          <p>All of the videos on this site are made up, so there is nothing to play.</p>
+          <button
+            onClick={() => {
+              setPopupIsOpen(false);
+            }}
+          >
+            Close
+          </button>
+        </div>
+      )}
       <button className={styles.container__back} onClick={goBack}>
         &#8592; Back
       </button>
@@ -44,7 +58,7 @@ export default function MediaListing({ params }: MediaProps) {
             <BookmarkButton bookmarkId={mediaData.bookmarkId} mediaId={mediaData.id} />
           </div>
           <ul className={styles.details}>
-            <li>{mediaData.year}</li>
+            <li>Released in {mediaData.year}</li>
             <span className={styles.details__dot}></span>
             <li>
               <SVGIcon
@@ -56,7 +70,7 @@ export default function MediaListing({ params }: MediaProps) {
               {mediaData.category}
             </li>
             <span className={styles.details__dot}></span>
-            <li>{mediaData.rating}</li>
+            <li>Rated {mediaData.rating}</li>
           </ul>
           <p className={styles.container__paragraph}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
@@ -65,7 +79,12 @@ export default function MediaListing({ params }: MediaProps) {
             nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
             anim id est laborum.
           </p>
-          <button className={styles.container__play}>
+          <button
+            className={styles.container__play}
+            onClick={() => {
+              setPopupIsOpen(true);
+            }}
+          >
             <SVGIcon type="play" width={25} height={25} /> Play
           </button>
         </div>
