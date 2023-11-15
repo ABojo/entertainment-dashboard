@@ -8,6 +8,16 @@
   }
 }
 
+@keyframes scaleDown {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+}
+
 .container {
   max-width: 50rem;
   width: 90%;
@@ -62,6 +72,10 @@
         height: 1px;
         background-color: var(--color-blue-2);
       }
+    }
+
+    &--exit {
+      animation: scaleDown 0.2s linear;
     }
   }
 

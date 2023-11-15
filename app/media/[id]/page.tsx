@@ -15,6 +15,7 @@ interface MediaProps {
 }
 
 export default function MediaListing({ params }: MediaProps) {
+  const [popupClass, setPopupClass] = useState(styles.container__popup);
   const [popupIsOpen, setPopupIsOpen] = useState(false);
   const [mediaData, setMediaData] = useState<MediaResponse | null>(null);
   const router = useRouter();
@@ -33,11 +34,14 @@ export default function MediaListing({ params }: MediaProps) {
   return (
     <main className={styles.container}>
       {popupIsOpen && (
-        <div className={styles.container__popup}>
+        <div className={popupClass}>
           <h2>Error</h2>
           <p>All of the videos on this site are made up, so there is nothing to play.</p>
           <button
-            onClick={() => {
+            onClick={async (e) => {
+              setPopupClass(`${styles.container__popup} ${styles["container__popup--exit"]}`);
+              await new Promise((res, rej) => setTimeout(res, 200));
+              setPopupClass(`${styles.container__popup}`);
               setPopupIsOpen(false);
             }}
           >
