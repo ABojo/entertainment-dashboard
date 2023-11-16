@@ -41,6 +41,8 @@
     flex-direction: column;
     z-index: 1;
     animation: scaleIn 0.2s linear;
+    width: 90%;
+    max-width: 22rem;
 
     h2 {
       margin-bottom: 0.5rem;

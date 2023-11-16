@@ -1,3 +1,5 @@
+@use "../../sass/breakpoints" as *;
+
 .sidebar {
   grid-area: sidebar;
   height: calc(100vh - 4rem);
@@ -13,6 +15,10 @@
 
   &__logo {
     margin-bottom: 4.5rem;
+
+    @media (max-width: $bp-1) {
+      margin-bottom: 0;
+    }
   }
 
   &__profile {
@@ -27,6 +33,22 @@
       opacity: 0.5;
     }
   }
+
+  @media (max-width: $bp-1) {
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+  }
+
+  @media (max-width: $bp-3) {
+    padding: 2rem 1rem;
+  }
 }
 
 .nav {
@@ -38,6 +60,14 @@
     flex-direction: column;
     gap: 2.25rem;
     margin-bottom: auto;
+
+    @media (max-width: $bp-1) {
+      flex-direction: row;
+    }
+
+    @media (max-width: $bp-3) {
+      gap: 1.75rem;
+    }
   }
 
   &__link {
@@ -51,5 +81,9 @@
     &--active {
       color: var(--color-white);
     }
+  }
+
+  @media (max-width: $bp-1) {
+    margin-bottom: 0;
   }
 }

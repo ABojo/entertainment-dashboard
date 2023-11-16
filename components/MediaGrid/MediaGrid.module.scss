@@ -1,5 +1,11 @@
+@use "../../sass/breakpoints" as *;
+
 .container {
   padding-right: 2rem;
+
+  @media (max-width: $bp-3) {
+    padding-right: 1rem;
+  }
 
   &__title {
     font-weight: var(--fw-1);
@@ -11,5 +17,18 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
     grid-gap: 2.25rem;
+
+    @media (max-width: $bp-1) {
+      grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+    }
+
+    @media (max-width: $bp-3) {
+      grid-gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    }
+
+    @media (max-width: $bp-4) {
+      grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+    }
   }
 }

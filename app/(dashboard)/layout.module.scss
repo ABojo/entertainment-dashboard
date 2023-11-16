@@ -1,19 +1,25 @@
+@use "../../sass/breakpoints" as *;
+
 .main {
   padding: 2rem;
   padding-right: 0;
-  display: grid;
-  grid-template-columns: max-content 1fr;
-  grid-template-areas: "sidebar content";
-  grid-template-rows: auto 1fr;
-  grid-gap: 2rem;
-  grid-row-gap: 1.5rem;
+
+  @media (max-width: $bp-3) {
+    padding: 1rem;
+    padding-right: 0;
+  }
 }
 
 .content {
   grid-area: content;
   color: var(--color-white);
   overflow: hidden;
-  padding-left: 6.5rem;
+  padding-left: 8.5rem;
   min-height: 100vh;
   position: relative;
+
+  @media (max-width: $bp-1) {
+    padding-left: 0rem;
+    padding-top: 6rem;
+  }
 }

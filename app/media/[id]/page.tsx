@@ -35,7 +35,7 @@ export default function MediaListing({ params }: MediaProps) {
           <button
             onClick={async (e) => {
               setPopupClass(`${styles.container__popup} ${styles["container__popup--exit"]}`);
-              await new Promise((res, rej) => setTimeout(res, 200));
+              await new Promise((res, rej) => setTimeout(res, 180));
               setPopupClass(`${styles.container__popup}`);
               setPopupIsOpen(false);
             }}
