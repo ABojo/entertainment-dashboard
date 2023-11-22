@@ -15,6 +15,7 @@ export default function MediaCard({ media }: MediaCardProps) {
     <div className={styles.card}>
       <BookmarkButton className={styles.card__bookmark} bookmarkId={media.bookmarkId} mediaId={media.id} />
       <Link href={`/media/${media.id}`} className={styles.card__link}>
+        <span className="sr-only">Open {media.title}</span>
         <div className={styles.card__overlay}>
           <div className={styles.card__play}>
             <SVGIcon type="play" />
