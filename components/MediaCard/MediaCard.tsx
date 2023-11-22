@@ -22,7 +22,11 @@ export default function MediaCard({ media }: MediaCardProps) {
           </div>
         </div>
         <div className={styles.card__loader}></div>
-        <LazyImage src={media.thumbnails[0].large!} alt={`${media.title} cover`} />
+        <LazyImage
+          src={media.thumbnails[0].large!}
+          alt={`${media.title} cover`}
+          sizes="(max-width: 500px) 50vw, (max-width: 700px) 40vw, (max-width: 900px) 30vw, 15vw"
+        />
       </Link>
       <div className={styles.card__foot}>
         <ul className={styles.card__details}>
