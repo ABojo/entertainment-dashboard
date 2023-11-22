@@ -11,6 +11,7 @@ interface LazyImageProps {
 export default function LazyImage({ className, src, alt, sizes }: LazyImageProps) {
   return (
     <Image
+      unoptimized
       className={`${styles.image} ${className}`}
       alt={alt}
       src={src}
