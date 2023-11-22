@@ -1,15 +1,14 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import db from "../../../utils/db";
 import { Thumbnail } from "@prisma/client";
-import { addAdminGuard } from "../../../utils/guards";
-import { getCurrentUser } from "../../../utils/auth";
+import { addAdminGuard, addAuthGuard } from "../../../utils/guards";
 
 interface QueryCondition {
   title?: { contains: string; mode: "insensitive" };
   category?: string;
 }
 
-export const POST = addAdminGuard(async function (req: NextRequest) {
+export const POST = addAdminGuard(async function (req) {
   const { title, year, category, rating, isTrending, thumbnail } = await req.json();
 
   if (!title || !year || !category || !rating || isTrending === undefined || !thumbnail.regular) {
@@ -57,9 +56,7 @@ export const POST = addAdminGuard(async function (req: NextRequest) {
   return NextResponse.json({ status: "success", data: newMedia });
 });
 
-export const GET = async function (req: NextRequest) {
-  const currentUser = await getCurrentUser(req);
-
+export const GET = addAuthGuard(async function (req, currentUser) {
   const { searchParams } = new URL(req.url);
 
   //pull query parameters
@@ -100,4 +97,4 @@ export const GET = async function (req: NextRequest) {
   }
 
   return NextResponse.json({ status: "success", data: mediaForUser });
-};
+});

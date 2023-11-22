@@ -1,10 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
-import { getCurrentUser } from "../../../utils/auth";
+import { NextResponse } from "next/server";
 import db from "../../../utils/db";
+import { addAuthGuard } from "../../../utils/guards";
 
-export async function GET(req: NextRequest) {
-  const currentUser = await getCurrentUser(req);
-
+export const GET = addAuthGuard(async function (req, currentUser) {
   const bookmarks = await db.bookmark.findMany({
     where: {
       userId: currentUser!.id,
@@ -17,17 +15,9 @@ export async function GET(req: NextRequest) {
   const bookmarkArray = bookmarks.map((bookmark) => bookmark.media);
 
   return NextResponse.json({ status: "success", data: bookmarkArray });
-}
+});
 
-export async function POST(req: NextRequest) {
-  const currentUser = await getCurrentUser(req);
-
-  if (!currentUser)
-    return NextResponse.json({
-      status: "error",
-      message: "Please login again.",
-    });
-
+export const POST = addAuthGuard(async function (req, currentUser) {
   const json = await req.json();
 
   const selectedMedia = await db.media.findFirst({
@@ -60,17 +50,9 @@ export async function POST(req: NextRequest) {
   });
 
   return NextResponse.json({ status: "success", data: newBookmark });
-}
+});
 
-export async function DELETE(req: NextRequest) {
-  const currentUser = await getCurrentUser(req);
-
-  if (!currentUser)
-    return NextResponse.json({
-      status: "error",
-      message: "Please login again.",
-    });
-
+export const DELETE = addAuthGuard(async function (req, currentUser) {
   const json = await req.json();
 
   if (!json.bookmarkId) return NextResponse.json({ status: "error", message: "You must provide a bookmarkId" });
@@ -85,4 +67,4 @@ export async function DELETE(req: NextRequest) {
   if (!bookmark) return NextResponse.json({ status: "error", message: "That bookmark doesn't exist!" });
 
   return NextResponse.json({ status: "success", data: { bookmark } });
-}
+});
