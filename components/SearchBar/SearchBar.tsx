@@ -22,8 +22,10 @@ export default function SearchBar({ isLoading, placeholder, onChange }: SearchBa
           </svg>
         )}
       </div>
-
-      <input onChange={onChange} className={styles.search__input} type="text" placeholder={placeholder} />
+      <label htmlFor="search" className="sr-only">
+        {placeholder}
+      </label>
+      <input id="search" onChange={onChange} className={styles.search__input} type="text" placeholder={placeholder} />
     </div>
   );
 }
