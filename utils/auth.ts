@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import { SignJWT, jwtVerify, decodeJwt } from "jose";
 import { NextRequest } from "next/server";
+import UserResponse from "../types/UserResponse";
 import db from "../utils/db";
 
 export async function hashPassword(password: string) {
@@ -27,16 +28,15 @@ export async function verifyJWT(token: string) {
   return false;
 }
 
-export async function getCurrentUser(req: NextRequest) {
+export async function getCurrentUser(req: NextRequest): Promise<UserResponse | null> {
   const cookie = req.cookies.get("JWT");
 
-  if (!cookie) {
-    return null;
-  }
+  //if no jwt is present in cookies, or if jwt isnt valid
+  if (!cookie || !(await verifyJWT(cookie.value))) return null;
 
   const jwtData = decodeJwt(cookie.value);
 
-  const user = await db.user.findFirst({
+  const user: UserResponse | null = await db.user.findFirst({
     where: {
       id: jwtData.id!,
     },
