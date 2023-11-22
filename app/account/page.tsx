@@ -27,7 +27,11 @@ export default function Account() {
           <BackButton />
           <div className={styles.container__head}>
             <div className={styles.container__img}>
-              <LazyImage src="/images/image-avatar.png" alt="" />
+              <LazyImage
+                src="/images/image-avatar.png"
+                alt="User Profile Picture"
+                sizes="(max-width: 500px) 25vw, (max-width: 700px) 15vw, 5vw"
+              />
             </div>
             <h1>{profileData?.username.toUpperCase()}</h1>
           </div>

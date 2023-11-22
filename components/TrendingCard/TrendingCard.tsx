@@ -21,7 +21,11 @@ export default function TrendingCard({ media }: TrendingCardProps) {
           </div>
         </div>
         <div className={styles.card__loader}></div>
-        <LazyImage alt={`${media.title} cover`} src={media.thumbnails[1].large!} />
+        <LazyImage
+          alt={`${media.title} cover`}
+          src={media.thumbnails[1].large!}
+          sizes="(max-width: 700px) 70vw, (max-width: 900px) 50vw, 30vw"
+        />
         <div className={styles.card__info}>
           <ul className={styles.card__details}>
             <li>{media.year}</li>
