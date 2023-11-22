@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import apiClient from "../../utils/apiClient";
 import styles from "./BookmarkButton.module.scss";
 import Loader from "../Loader/Loader";
@@ -29,14 +29,15 @@ export default function BookmarkButton({ className, bookmarkId, mediaId }: Bookm
   }
 
   return (
-    <button className={`${className} ${styles.bookmark}`} onClick={bookmarkHandler} disabled={isLoading}>
-      {isLoading ? (
-        <Loader size="1rem" />
-      ) : bookmark ? (
-        <SVGIcon type="bookmark-full" />
-      ) : (
-        <SVGIcon type="bookmark-empty" />
-      )}
+    <button
+      role="switch"
+      aria-checked={!!bookmark}
+      aria-label={bookmark ? "Remove Bookmark" : "Add Bookmark"}
+      className={`${className} ${styles.bookmark}`}
+      onClick={bookmarkHandler}
+      disabled={isLoading}
+    >
+      {isLoading ? <Loader size="1rem" /> : <SVGIcon type={`${bookmark ? "bookmark-full" : "bookmark-empty"}`} />}
     </button>
   );
 }
