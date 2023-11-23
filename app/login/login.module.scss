@@ -1,0 +1,17 @@
+.credentials {
+  color: var(--color-white);
+  background-color: #17b978;
+  max-width: 25rem;
+  padding: 1rem;
+  margin: 0 auto;
+  width: 90%;
+  margin-top: 5rem;
+  border-radius: 0.5rem;
+  font-size: var(--fs-2);
+
+  &__heading {
+    font-size: var(--fs-3);
+    font-weight: var(--fw-2);
+    margin-bottom: 0.5rem;
+  }
+}

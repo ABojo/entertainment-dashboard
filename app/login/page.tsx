@@ -1,5 +1,6 @@
 "use client";
 
+import styles from "./login.module.scss";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import apiClient from "../../utils/apiClient";
@@ -64,7 +65,6 @@ function Login() {
       setErrorMessage("");
       setIsLoading(true);
       const json = await apiClient.login(usernameField.value, passwordField.value);
-      console.log(json);
       setIsLoading(false);
 
       if (json.status === "success") {
@@ -76,15 +76,22 @@ function Login() {
   };
 
   return (
-    <AuthForm
-      title="Login"
-      isLoading={isLoading}
-      onSubmit={onSubmit}
-      inputs={[usernameField, passwordField]}
-      submitText="Login to your account"
-      subText={{ message: "Don't have an account?", linkText: "Sign Up", link: "/register" }}
-      errorMessage={errorMessage}
-    />
+    <>
+      <div className={styles.credentials}>
+        <h2 className={styles.credentials__heading}>Want to test the app?</h2>
+        <p>Username: guest</p>
+        <p>Password: password</p>
+      </div>
+      <AuthForm
+        title="Login"
+        isLoading={isLoading}
+        onSubmit={onSubmit}
+        inputs={[usernameField, passwordField]}
+        submitText="Login to your account"
+        subText={{ message: "Don't have an account?", linkText: "Sign Up", link: "/register" }}
+        errorMessage={errorMessage}
+      />
+    </>
   );
 }
 
